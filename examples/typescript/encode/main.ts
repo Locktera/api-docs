@@ -1,8 +1,9 @@
 import * as dotenv from 'dotenv';
+import * as glob from 'glob';
 import mime from 'mime';
 import * as fs from 'node:fs/promises';
 import * as path from 'path';
-import { Manifest } from '../Manifest.ts';
+import { type Manifest } from '../Manifest.ts';
 
 // Import IDs and keys from the environment file
 dotenv.config({ path: '../../../env' });
@@ -50,7 +51,7 @@ async function construct_manifest () {
 	manifest.files = {};
 
 	// Add the other input files to the manifest
-	for await (const file of fs.glob('./input/*')) {
+	for await (const file of await glob.globIterate('./input/*')) {
 		const basename = path.basename(file);
 		if (basename === 'manifest.json') continue;
 
@@ -59,12 +60,11 @@ async function construct_manifest () {
 		};
 	}
 
+	console.log('Encoding manifest:', manifest);
 	return manifest;
 }
 
 async function encode_container (manifest: Manifest) {
-	console.log('Encoding manifest:', manifest);
-
 	const body = new FormData();
 
 	// Append the manifest to the body

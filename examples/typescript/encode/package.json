@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"dotenv": "^16.4.5",
+		"glob": "^11.0.0",
 		"mime": "^4.0.4",
 		"ts-blank-space": "^0.4.3"
 	},
