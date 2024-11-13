@@ -3,4 +3,4 @@
 See the subdirectiories for the following examples:
 
 - `encode`: Encode a new Locktera container.
-- `drm (coming soon)`: Modify the DRM rules on a container with dynamic (flexible) DRM.
+- `drm`: (Coming Soon) Modify the DRM rules on a container with dynamic (flexible) DRM.

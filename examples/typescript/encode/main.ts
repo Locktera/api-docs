@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 import mime from 'mime';
 import * as fs from 'node:fs/promises';
 import * as path from 'path';
-import { type Manifest } from '../Manifest.ts';
+import { Manifest } from '../Manifest.ts';
 
 // Import IDs and keys from the environment file
 dotenv.config({ path: '../../../env' });

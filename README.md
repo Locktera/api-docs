@@ -1,4 +1,4 @@
-# Locktera Docs
+# Locktera API Docs
 
 This repository contains documentation and samples for using the Locktera API.
 

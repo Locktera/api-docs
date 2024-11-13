@@ -16,24 +16,24 @@ export type Drm = {
 	ip?: DrmRules<string>;
 	opens?: number;
 	time?: TimeRule;
-}
+};
 
 export type DrmRules<T> = {
 	allow?: T[];
 	block?: T[];
-}
+};
 
 export type GeoRule = {
 	continent?: string;
 	country?: string;
 	subdivision?: string;
 	city?: string;
-}
+};
 
 export type TimeRule = {
 	start?: Date;
 	end?: Date;
-}
+};
 
 export type FileInfo = {
 	type?: string;
