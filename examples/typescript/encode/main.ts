@@ -16,13 +16,15 @@ if (!ORG_ID) throw new Error('ORG_ID is required');
 if (!API_KEY) throw new Error('API_KEY is required');
 
 async function api_fetch (url: string, init?: RequestInit) {
-	url = [API_URL, url].join('/').replace(/\/+/g, '/'); // Combine the base API URL and remove duplicate slashes
+	// Combine the base API URL and remove duplicate slashes
+	url = path.join(API_URL!, url);
 
+	// Add the Authorization header containing the API key
 	init = {
 		...init,
 		headers: {
 			...init?.headers,
-			'authorization': `Bearer ${API_KEY}`, // Add the Authorization header
+			'authorization': `Bearer ${API_KEY}`,
 		},
 	};
 
@@ -84,5 +86,5 @@ async function encode_container (manifest: Manifest) {
 }
 
 await verify_identity();
-// const manifest = await construct_manifest();
-// await encode_container(manifest);
+const manifest = await construct_manifest();
+await encode_container(manifest);
