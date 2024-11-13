@@ -1,0 +1,18 @@
+{
+	"name": "locktera-sample-encode",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"start": "node --import ts-blank-space/register main.ts"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5",
+		"mime": "^4.0.4",
+		"ts-blank-space": "^0.4.3"
+	},
+	"devDependencies": {
+		"@types/node": ">=20"
+	}
+}

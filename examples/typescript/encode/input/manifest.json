@@ -1,0 +1,8 @@
+{
+	"container": {
+		"drm": {
+			"dynamic": true
+		},
+		"downloadable": true
+	}
+}
