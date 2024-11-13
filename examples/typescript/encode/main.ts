@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
-import * as fs from 'node:fs/promises';
 import mime from 'mime';
+import * as fs from 'node:fs/promises';
 import * as path from 'path';
 import { type Manifest } from '../Manifest.ts';
 
