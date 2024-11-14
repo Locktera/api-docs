@@ -38,6 +38,12 @@ async function api_fetch (url: string, init?: RequestInit) {
 	return await response.json();
 }
 
+export async function verify_identity () {
+	// Fetch our org information
+	const org_data = await api_fetch(`/orgs/${ORG_ID}`);
+	console.log('Logged in as:', org_data.email);
+}
+
 export {
 	api_fetch as default,
 	api_fetch as fetch

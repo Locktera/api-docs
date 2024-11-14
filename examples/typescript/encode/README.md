@@ -21,26 +21,12 @@ We will also need to import libraries specific to the task at hand - creating a 
 
 ```typescript
 import { type Manifest } from '../Manifest.ts'; // The definition of the Locktera container manifest
-import { ORG_ID, fetch } from '../fetch.ts'; // Our org ID and authenticated fetch function
+import { ORG_ID, fetch, verify_identity } from '../fetch.ts'; // Our org ID, authenticated fetch function, and sanity check function
 ```
 
-## API operations
+## Encode operations
 
-We will make use of just a few Locktera API operations, so we'll define helper function for each of them here.
-
-### verify_identity()
-
-This function is used as a sanity check. It will fetch our org info from the API and print our email address. If the API call fails, it will abort the program so we can address the credential issue.
-
-```typescript
-async function verify_identity () {
-	// Fetch our org information
-	const org_data = await fetch(`/orgs/${ORG_ID}`);
-
-	// Print our email address
-	console.log('Logged in as:', org_data.email);
-}
-```
+We will use the encode endpoint of the Locktera API, but first we need to describe our container.
 
 ### construct_manifest()
 
