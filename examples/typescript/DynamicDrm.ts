@@ -1,11 +1,10 @@
-import { DrmRules, GeoRule, TimeRule } from './Manifest.ts';
+import { Drm } from './Manifest.ts';
 
-export type DynamicDrm = {
-	dynamic: boolean;
+/** DRM rules modifiable after container creation */
+export type DynamicDrm = Drm & {
+	/** See `ContainerInfo.recipients` */
 	recipients?: string[];
+
+	/** See `ContainerInfo.downloadable` */
 	downloadable: boolean;
-	geo?: DrmRules<GeoRule>;
-	ip?: DrmRules<string>;
-	opens?: number;
-	time?: TimeRule;
 };

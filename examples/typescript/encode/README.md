@@ -62,7 +62,7 @@ For instructional purposes, however, we will go ahead and fill in the basic info
 	manifest.files = {};
 
 	// Add content files to the manifest
-	for await (const file of await glob.globIterate('./input/*')) {
+	for await (const file of glob.globIterate('./input/*')) {
 		// Strip the directory name
 		const basename = path.basename(file);
 
@@ -128,6 +128,6 @@ We will finally call the 3 API operations in sequence to encode our container.
 
 ```typescript
 await verify_identity();
-const manifest = construct_manifest();
+const manifest = await construct_manifest();
 await encode_container(manifest);
 ```

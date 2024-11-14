@@ -21,7 +21,7 @@ async function construct_manifest () {
     manifest.files = {};
 
     // Add content files to the manifest
-    for await (const file of await glob.globIterate('./input/*')) {
+    for await (const file of glob.globIterate('./input/*')) {
         // Strip the directory name
         const basename = path.basename(file);
 
@@ -65,5 +65,5 @@ async function encode_container (manifest: Manifest) {
 }
 
 await verify_identity();
-const manifest = construct_manifest();
-// await encode_container(manifest);
+const manifest = await construct_manifest();
+await encode_container(manifest);
