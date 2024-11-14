@@ -1,47 +1,14 @@
-import * as dotenv from 'dotenv';
 import * as glob from 'glob';
 import mime from 'mime';
 import * as fs from 'node:fs/promises';
 import * as path from 'path';
+
 import { type Manifest } from '../Manifest.ts';
-
-// Import IDs and keys from the environment file
-dotenv.config({ path: '../../../env' });
-
-const API_URL = process.env.API_URL;
-const ORG_ID = process.env.ORG_ID;
-const API_KEY = process.env.API_KEY;
-
-if (!API_URL) throw new Error('API_URL is required');
-if (!ORG_ID) throw new Error('ORG_ID is required');
-if (!API_KEY) throw new Error('API_KEY is required');
-
-async function api_fetch (url: string, init?: RequestInit) {
-	// Combine the base API URL and remove duplicate slashes
-	url = path.join(API_URL!, url);
-
-	// Add the Authorization header containing the API key
-	init = {
-		...init,
-		headers: {
-			...init?.headers,
-			'authorization': `Bearer ${API_KEY}`,
-		},
-	};
-
-	const response = await fetch(url, init);
-
-	if (!response.ok) {
-		const error = await response.json();
-		throw new Error(error.message);
-	}
-
-	return await response.json();
-}
+import { ORG_ID, fetch } from '../fetch.ts';
 
 async function verify_identity () {
 	// Verify the Org ID & API key
-	const org_data = await api_fetch(`/orgs/${ORG_ID}`);
+	const org_data = await fetch(`/orgs/${ORG_ID}`);
 	console.log('Logged in as:', org_data.email);
 }
 
@@ -77,7 +44,7 @@ async function encode_container (manifest: Manifest) {
 	}
 
 	// Encode the file!
-	const encoded_manifest = await api_fetch(`/orgs/${ORG_ID}/containers/encode`, {
+	const encoded_manifest = await fetch(`/orgs/${ORG_ID}/containers/encode`, {
 		method: 'POST',
 		body,
 	});
