@@ -5,8 +5,9 @@
 		"node": ">=20"
 	},
 	"scripts": {
+		"build:drm": "codedown typescript < drm/README.md > drm/main.ts",
 		"build:encode": "codedown typescript < encode/README.md > encode/main.ts",
-		"build": "npm run build:encode",
+		"build": "npm run build:drm && npm run build:encode",
 		"drm": "cd drm && node --import ts-blank-space/register main.ts",
 		"encode": "cd encode && node --import ts-blank-space/register main.ts"
 	},
