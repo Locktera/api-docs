@@ -5,6 +5,8 @@
 		"node": ">=20"
 	},
 	"scripts": {
+		"build:encode": "codedown typescript < encode/README.md > encode/main.ts",
+		"build": "npm run build:encode",
 		"encode": "cd encode && node --import ts-blank-space/register main.ts"
 	},
 	"dependencies": {
@@ -14,6 +16,7 @@
 		"ts-blank-space": "^0.4.3"
 	},
 	"devDependencies": {
-		"@types/node": ">=20"
+		"@types/node": ">=20",
+		"codedown": "^3.2.1"
 	}
 }
