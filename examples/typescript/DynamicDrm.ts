@@ -1,4 +1,4 @@
-import { Drm } from './Manifest.ts';
+import { type Drm } from './Manifest.ts';
 
 /** DRM rules modifiable after container creation */
 export type DynamicDrm = Drm & {

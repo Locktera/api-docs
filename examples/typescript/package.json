@@ -7,6 +7,7 @@
 	"scripts": {
 		"build:encode": "codedown typescript < encode/README.md > encode/main.ts",
 		"build": "npm run build:encode",
+		"drm": "cd drm && node --import ts-blank-space/register main.ts",
 		"encode": "cd encode && node --import ts-blank-space/register main.ts"
 	},
 	"dependencies": {

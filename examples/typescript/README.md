@@ -14,15 +14,18 @@
 
 ## Running an example
 
-From this directory, you can run each example using NPM, e.g.:
-
-```sh
-npm run encode
-```
+1. Navigate to the directory of the example you wish to run:
+	```sh
+	cd encode
+	```
+2. Run the example using `npm run $NAME`:
+	```sh
+	npm run encode
+	```
 
 ## Examples
 
 See the subdirectiories for the following examples:
 
 - `encode`: Encode a new Locktera container.
-- `drm`: (Coming Soon) Modify the DRM rules on a container with dynamic (flexible) DRM.
+- `drm`: Modify the DRM rules on a container with dynamic (flexible) DRM.
