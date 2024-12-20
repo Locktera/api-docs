@@ -5,8 +5,8 @@
 		"node": ">=20"
 	},
 	"scripts": {
-		"build:drm": "codedown typescript < drm/README.md > drm/main.ts",
-		"build:encode": "codedown typescript < encode/README.md > encode/main.ts",
+		"build:drm": "npx weave-ts < drm/main.ts > drm/README.md",
+		"build:encode": "npx weave-ts < encode/main.ts > encode/README.md",
 		"build": "npm run build:drm && npm run build:encode",
 		"drm": "cd drm && node --import ts-blank-space/register main.ts",
 		"encode": "cd encode && node --import ts-blank-space/register main.ts"
@@ -19,6 +19,6 @@
 	},
 	"devDependencies": {
 		"@types/node": ">=20",
-		"codedown": "^3.2.1"
+		"weave-ts": "github:jdknezek/weave-ts"
 	}
 }
