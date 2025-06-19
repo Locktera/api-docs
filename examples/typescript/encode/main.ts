@@ -22,21 +22,21 @@ import * as path from 'path'; // Used to get path basenames
  */
 
 import { type Manifest } from '../Manifest.ts'; // The definition of the Locktera container manifest
-import { ORG_ID, fetch, verify_identity } from '../fetch.ts'; // Our org ID, authenticated fetch function, and sanity check function
+import { ORG_ID, fetch, verifyIdentity } from '../fetch.ts'; // Our org ID, authenticated fetch function, and sanity check function
 
 /**
  * ## Encode operations
  *
  * We will use the encode endpoint of the Locktera API, but first we need to describe our container.
  *
- * ### construct_manifest()
+ * ### constructManifest()
  *
  * This function constructs a Locktera container manifest from the contents of the `input` folder. The `manifest.json` file forms the basis of the manifest, mostly consisting of any DRM rules. Then, we `glob` other files from the folder to fill out the `files` section of the manifest with their metadata.
  *
  * See the `Manifest.ts` file in the `typescript` directory for the type definition.
  */
 
-async function construct_manifest () {
+async function constructManifest () {
 	// Read the manifest from input/manifest.json
 	const manifest: Manifest = JSON.parse(await fs.readFile('./input/manifest.json', 'utf-8'));
 
@@ -74,12 +74,12 @@ async function construct_manifest () {
 }
 
 /**
- * ### encode_container()
+ * ### encodeContainer()
  *
  * This function takes our previously-constructed manifest and sends it and the content files to the Locktera API for encryption. This is probably the most complex function of the entire API, both in terms of its functionality and in terms of how the request must be constructed.
  */
 
-async function encode_container (manifest: Manifest) {
+async function encodeContainer (manifest: Manifest) {
 	// The data will be sent to the API as multipart form data, so we will use the FormData class to build the body
 	const body = new FormData();
 
@@ -94,7 +94,7 @@ async function encode_container (manifest: Manifest) {
 		body.append('files', new Blob([data], { type: file.type }), name);
 
 		/**
-		 * As mentioned in `construct_manifest()`, the content type of each file must be specified in either the manifest or the request body. We are also including them here to show how it is done.
+		 * As mentioned in `constructManifest()`, the content type of each file must be specified in either the manifest or the request body. We are also including them here to show how it is done.
 		 */
 	}
 
@@ -113,6 +113,6 @@ async function encode_container (manifest: Manifest) {
  * We will finally call the 3 API operations in sequence to encode our container.
  */
 
-await verify_identity();
-const manifest = await construct_manifest();
-await encode_container(manifest);
+await verifyIdentity();
+const manifest = await constructManifest();
+await encodeContainer(manifest);

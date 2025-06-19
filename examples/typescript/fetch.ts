@@ -15,7 +15,7 @@ if (!API_URL) throw new Error('API_URL is required');
 if (!ORG_ID) throw new Error('ORG_ID is required');
 if (!API_KEY) throw new Error('API_KEY is required');
 
-async function api_fetch (url: string, init?: RequestInit) {
+async function apiFetch (url: string, init?: RequestInit) {
 	// Combine the base API URL and remove duplicate slashes
 	url = path.join(API_URL!, url);
 
@@ -38,13 +38,13 @@ async function api_fetch (url: string, init?: RequestInit) {
 	return await response.json();
 }
 
-export async function verify_identity () {
+export async function verifyIdentity () {
 	// Fetch our org information
-	const user_data = await api_fetch(`/me`);
+	const user_data = await apiFetch(`/me`);
 	console.log('Logged in as:', user_data.email);
 }
 
 export {
-	api_fetch as default,
-	api_fetch as fetch
+	apiFetch as default,
+	apiFetch as fetch
 };

@@ -16,25 +16,25 @@ We will also need to import libraries specific to the task at hand - interacting
 
 ```typescript
 import { type DynamicDrm } from '../DynamicDrm.ts'; // The definition of Locktera DRM rules
-import { ORG_ID, fetch, verify_identity } from '../fetch.ts'; // Our org ID, authenticated fetch function, and sanity check function
+import { ORG_ID, fetch, verifyIdentity } from '../fetch.ts'; // Our org ID, authenticated fetch function, and sanity check function
 ```
 
 ## API operations
 
 We will `GET` and `PUT` the endpoint for a specified container's DRM using the authenticated fetch function.
 
-### get_drm()
+### getDrm()
 
 ```typescript
-async function get_drm (container_id: string) {
+async function getDrm (container_id: string) {
 	return await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
 }
 ```
 
-### put_drm()
+### putDrm()
 
 ```typescript
-async function put_drm (container_id: string, drm: DynamicDrm) {
+async function putDrm (container_id: string, drm: DynamicDrm) {
 	await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`, {
 		method: 'PATCH',
 		headers: {
@@ -78,7 +78,7 @@ const file_name = container_id + '.json';
 Then we will verify that our Org ID and API key are good by fetching our org information. If either value is bad, this function will throw.
 
 ```typescript
-await verify_identity();
+await verifyIdentity();
 ```
 
 Finally, we will handle the two possible actions.
@@ -86,7 +86,7 @@ Finally, we will handle the two possible actions.
 ```typescript
 if (action === 'get') {
 	// Fetch the DRM from the API
-	const drm = await get_drm(container_id);
+	const drm = await getDrm(container_id);
 
 	// Write it to the output file
 	await fs.writeFile(file_name, JSON.stringify(drm, null, '\t'));
@@ -100,7 +100,7 @@ if (action === 'get') {
 	const drm: DynamicDrm = JSON.parse(input.trim());
 
 	// Update the container's DRM
-	await put_drm(container_id, drm);
+	await putDrm(container_id, drm);
 
 	console.log('Updated from', file_name);
 }
