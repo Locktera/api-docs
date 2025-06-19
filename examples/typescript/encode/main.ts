@@ -99,7 +99,7 @@ async function encode_container (manifest: Manifest) {
 	}
 
 	// Encode the file!
-	const encoded_manifest = await fetch(`/orgs/${ORG_ID}/containers/encode`, {
+	const encoded_manifest = await fetch(`/users/${ORG_ID}/containers/encode`, {
 		method: 'POST',
 		body,
 	});

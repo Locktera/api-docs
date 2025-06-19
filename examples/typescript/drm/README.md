@@ -27,7 +27,7 @@ We will `GET` and `PUT` the endpoint for a specified container's DRM using the a
 
 ```typescript
 async function get_drm (container_id: string) {
-	return await fetch(`/orgs/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
+	return await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
 }
 ```
 
@@ -35,8 +35,8 @@ async function get_drm (container_id: string) {
 
 ```typescript
 async function put_drm (container_id: string, drm: DynamicDrm) {
-	await fetch(`/orgs/${ORG_ID}/containers/${container_id}/drm`, {
-		method: 'PUT',
+	await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`, {
+		method: 'PATCH',
 		headers: {
 			'content-type': 'application/json', // Be sure to set the content type!
 		},

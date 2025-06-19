@@ -31,8 +31,8 @@ async function api_fetch (url: string, init?: RequestInit) {
 	const response = await fetch(url, init);
 
 	if (!response.ok) {
-		const error = await response.json();
-		throw new Error(error.message);
+		const error = await response.text();
+		throw new Error(error);
 	}
 
 	return await response.json();

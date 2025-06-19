@@ -28,7 +28,7 @@ import { ORG_ID, fetch, verify_identity } from '../fetch.ts'; // Our org ID, aut
  */
 
 async function get_drm (container_id: string) {
-	return await fetch(`/orgs/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
+	return await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
 }
 
 /**
@@ -36,8 +36,8 @@ async function get_drm (container_id: string) {
  */
 
 async function put_drm (container_id: string, drm: DynamicDrm) {
-	await fetch(`/orgs/${ORG_ID}/containers/${container_id}/drm`, {
-		method: 'PUT',
+	await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`, {
+		method: 'PATCH',
 		headers: {
 			'content-type': 'application/json', // Be sure to set the content type!
 		},

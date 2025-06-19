@@ -99,7 +99,7 @@ As mentioned in `construct_manifest()`, the content type of each file must be sp
 	}
 
 	// Encode the file!
-	const encoded_manifest = await fetch(`/orgs/${ORG_ID}/containers/encode`, {
+	const encoded_manifest = await fetch(`/users/${ORG_ID}/containers/encode`, {
 		method: 'POST',
 		body,
 	});
