@@ -31,10 +31,10 @@ async function getDrm (container_id: string) {
 }
 ```
 
-### putDrm()
+### patchDrm()
 
 ```typescript
-async function putDrm (container_id: string, drm: DynamicDrm) {
+async function patchDrm (container_id: string, drm: DynamicDrm) {
 	await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`, {
 		method: 'PATCH',
 		headers: {
@@ -100,7 +100,7 @@ if (action === 'get') {
 	const drm: DynamicDrm = JSON.parse(input.trim());
 
 	// Update the container's DRM
-	await putDrm(container_id, drm);
+	await patchDrm(container_id, drm);
 
 	console.log('Updated from', file_name);
 }
