@@ -40,8 +40,8 @@ async function api_fetch (url: string, init?: RequestInit) {
 
 export async function verify_identity () {
 	// Fetch our org information
-	const org_data = await api_fetch(`/orgs/${ORG_ID}`);
-	console.log('Logged in as:', org_data.email);
+	const user_data = await api_fetch(`/me`);
+	console.log('Logged in as:', user_data.email);
 }
 
 export {
