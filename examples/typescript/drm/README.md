@@ -27,7 +27,8 @@ We will `GET` and `PUT` the endpoint for a specified container's DRM using the a
 
 ```typescript
 async function getDrm (container_id: string) {
-	return await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
+	const rsp = await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`);
+	return await rsp.json() as DynamicDrm;
 }
 ```
 

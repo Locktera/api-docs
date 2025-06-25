@@ -28,7 +28,8 @@ import { ORG_ID, fetch, verifyIdentity } from '../fetch.ts'; // Our org ID, auth
  */
 
 async function getDrm (container_id: string) {
-	return await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`) as DynamicDrm;
+	const rsp = await fetch(`/users/${ORG_ID}/containers/${container_id}/drm`);
+	return await rsp.json() as DynamicDrm;
 }
 
 /**

@@ -35,12 +35,13 @@ async function apiFetch (url: string, init?: RequestInit) {
 		throw new Error(error);
 	}
 
-	return await response.json();
+	return response;
 }
 
 export async function verifyIdentity () {
 	// Fetch our org information
-	const user_data = await apiFetch(`/me`);
+	const user_rsp = await apiFetch(`/me`);
+	const user_data = await user_rsp.json();
 	console.log('Logged in as:', user_data.email);
 }
 

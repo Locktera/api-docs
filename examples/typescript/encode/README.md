@@ -99,10 +99,11 @@ As mentioned in `constructManifest()`, the content type of each file must be spe
 	}
 
 	// Encode the file!
-	const encoded_manifest = await fetch(`/users/${ORG_ID}/containers/encode`, {
+	const encode_rsp = await fetch(`/users/${ORG_ID}/containers/encode`, {
 		method: 'POST',
 		body,
-	});
+	})
+	const encoded_manifest = await encode_rsp.json();
 
 	console.log('Successfully encoded container:', encoded_manifest.container.uuid);
 }
