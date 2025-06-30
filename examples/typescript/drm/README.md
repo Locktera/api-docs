@@ -21,7 +21,7 @@ import { ORG_ID, fetch, verifyIdentity } from '../fetch.ts'; // Our org ID, auth
 
 ## API operations
 
-We will `GET` and `PUT` the endpoint for a specified container's DRM using the authenticated fetch function.
+We will `GET` and `PATCH` the endpoint for a specified container's DRM using the authenticated fetch function.
 
 ### getDrm()
 
@@ -55,7 +55,7 @@ We will use command line arguments to specify the action, container ID, and DRM 
 if (process.argv.length !== 4) {
 	console.log(`Usage:
 	npm run drm get $CONTAINER_ID - outputs $CONTAINER_ID's DRM to $CONTAINER_ID.json
-	npm run drm put $CONTAINER_ID - sets $CONTAINER_ID's DRM from $CONTAINER_ID.json
+	npm run drm patch $CONTAINER_ID - patches $CONTAINER_ID's DRM from $CONTAINER_ID.json
 `);
 	process.exit(0);
 }
@@ -65,8 +65,8 @@ const action = process.argv[2].trim().toLowerCase();
 const container_id = process.argv[3].trim().toLowerCase();
 
 // Verify arguments
-if (action !== 'get' && action !== 'put') {
-	throw new Error('Invalid action; use `get` or `put`');
+if (action !== 'get' && action !== 'patch') {
+	throw new Error('Invalid action; use `get` or `patch`');
 }
 
 if (!/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/.test(container_id)) {
@@ -93,7 +93,7 @@ if (action === 'get') {
 	await fs.writeFile(file_name, JSON.stringify(drm, null, '\t'));
 
 	console.log('Wrote to', file_name);
-} else if (action === 'put') {
+} else if (action === 'patch') {
 	// Read the contents of the input file
 	const input = await fs.readFile(file_name, 'utf-8');
 
